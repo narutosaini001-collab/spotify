@@ -1,0 +1,28 @@
+
+
+.flex{
+    display: flex;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.mart{
+    margin-top: 10px;
+}
+.marb{
+    margin-bottom: 10px;
+}
+
+.g25{
+    gap: 25px;
+}

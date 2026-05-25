@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spotify</title>
+    <link rel="stylesheet" href="s.css">
+    <link rel="stylesheet" href="utility.css">
+</head>
+
+<body>
+    <div class="nav flex align-center justify-center justify-between">
+        <div class="leftnav flex align-center">
+            <div class="logo"><img src="svgs/logo.svg" alt="spotify"></div>
+            <button class="home flex justify-center align-center">
+                <img src="svgs/home.svg" alt="Home">
+            </button>
+            <div class="searchbar">
+                <input type="text" placeholder="What do you want to play?">
+            </div>
+        </div>
+
+        <div class="rightnav flex align-center">
+            <div class="singup">singup</div>
+            <div class="login">login</div>
+        </div>
+    </div>
+    <div class="container flex">
+        <div class="left border">
+            <div class="lefttop flex align-center justify-center justify-between">
+                <div>Your Library</div>
+                <button class="plus-btn">
+                    <img src="svgs/plus.svg" alt="+">
+                </button>
+            </div>
+            <div class="library">
+
+                <ul>
+                    <!-- song of library -->
+                </ul>
+
+            </div>
+            <div class="leftbottom">
+                <div class="info">
+                    <div class="infl"><a href="#">Legal</a></div>
+                    <div class="infl"><a href="#">Safety&PrivacyCenter</a></div>
+                    <div class="infl"><a href="#">Privacy Policy</a></div>
+                    <div class="infl"><a href="#">Cookies</a></div>
+                    <div class="infl"><a href="#">About Ads</a></div>
+                    <div class="infl"><a href="#">Accessibility</a></div>
+                </div>
+                <div class="cooki">
+                    <a href="#">Cookies</a>
+                </div>
+                <div class="btn">
+                    <button class="language-btn">
+                        <div class="icon">
+                            <img src="svgs/lang.svg" alt="lang">
+                        </div>
+                        <div>
+                            English
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="right border">
+            <div class="playlist">
+                <div class="sp flex align-center g25">
+                    <h2><a href="#">Spotify Playlists</a></h2>
+                    <button class="playlist-add-btn">
+                        <img src="svgs/plus.svg">
+                    </button>
+
+                </div>
+
+                <div class="cards-wrapper">
+
+                    <button class="scroll-left">‹</button>
+
+                    <div class="cards">
+
+                        <!-- playlists cards -->
+
+                    </div>
+
+                    <button class="scroll-right">›</button>
+
+                </div>
+                <div class="player">
+                    <div class="seekbar">
+                        <div class="circle"></div>
+                    </div>
+
+                    <div class="playbar">
+                        <div class="playbtn">
+                            <button class="pbimg" id="prev"><img src="svgs/prev.svg" alt=""></button>
+                            <button class="imgp" id="play"><img src="svgs/pause.svg" alt=""></button>
+                            <button class="pbimg" id="next"><img src="svgs/next.svg" alt=""></button>
+                        </div>
+                        <div class="time">
+                            <!-- song duration -->
+                        </div>
+                        <button class="closeimg" id="close">
+                            <img src="svgs/close.svg" alt="X">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <input type="file" id="songInput" accept="audio/*" multiple hidden>
+
+    <div class="playlist-modal">
+        <div class="modal-content">
+            <h2>Create Playlist</h2>
+            <input type="text" id="playlistName" placeholder="Playlist Name">
+            <input type="text" id="playlistArtist" placeholder="Artist Name (optional)">
+            <input type="file" id="playlistImage" accept="image/*">
+            <button id="createPlaylistBtn">
+                Create
+            </button>
+        </div>
+    </div>
+
+    <script src="s.js"></script>
+
+</body>
+
+</html>

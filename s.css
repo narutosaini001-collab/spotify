@@ -1,0 +1,686 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+button:focus,
+button:active {
+    outline: none;
+    box-shadow: none;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+
+.nav {
+    background-color: black;
+    padding: 0 30px;
+    padding-top: 10px;
+}
+
+
+.leftnav {
+    gap: 20px;
+}
+
+
+.logo img {
+    width: 35px;
+    cursor: pointer;
+    filter: invert(1);
+}
+
+
+.home {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+    background-color: #1f1f1f;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    border: none;
+    outline: none;
+    appearance: none;
+
+    box-shadow: none;
+}
+
+.home:hover {
+    background-color: #2a2a2a;
+}
+
+.home img {
+    padding: 10px;
+    filter: invert(1);
+}
+
+
+.searchbar input {
+    width: 350px;
+    padding: 12px 20px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 30px;
+
+    background-color: #1f1f1f;
+    color: white;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+.searchbar input::placeholder {
+    color: #b3b3b3;
+}
+
+.searchbar input:hover {
+    background-color: #2a2a2a;
+}
+
+
+.rightnav {
+    gap: 20px;
+}
+
+
+.singup {
+    color: #b3b3b3;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.singup:hover {
+    color: white;
+}
+
+
+.login {
+    background-color: white;
+    color: black;
+
+    padding: 12px 28px;
+    border-radius: 30px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.login:hover {
+    transform: scale(1.05);
+}
+
+
+.container {
+    gap: 10px;
+    margin: 10px;
+}
+
+.left {
+    width: 27vw;
+    background-color: #121212;
+    border-radius: 7px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+
+.right {
+    width: 73vw;
+    background-color: #121212;
+    border-radius: 7px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+.plus-btn {
+    width: 37px;
+    height: 37px;
+
+    border-radius: 50%;
+    background-color: #1f1f1f;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    border: none;
+    outline: none;
+    appearance: none;
+
+    box-shadow: none;
+}
+
+.plus-btn:hover {
+    background-color: #2a2a2a;
+}
+
+.plus-btn img {
+    width: 18px;
+    height: 18px;
+    filter: invert(76%) sepia(0%) saturate(0%) brightness(90%) contrast(87%);
+
+}
+
+.lefttop {
+    padding: 20px;
+}
+
+
+.playlist-add-btn {
+    width: 37px;
+    height: 37px;
+
+    border-radius: 50%;
+    background-color: #1f1f1f;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: 0.3s;
+
+    border: none;
+    outline: none;
+    appearance: none;
+
+    box-shadow: none;
+}
+
+.playlist-add-btn:hover {
+    background-color: #2a2a2a;
+}
+
+.playlist-add-btn img {
+    width: 18px;
+    height: 18px;
+    filter: invert(76%) sepia(0%) saturate(0%) brightness(90%) contrast(87%);
+}
+
+
+.library ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 305px;
+    overflow-y: auto;
+
+    width: 100%;
+    padding: 0 15px;
+}
+
+.library ul::-webkit-scrollbar {
+    width: 20px;
+
+}
+
+.library ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.library ul::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+.library ul li {
+    list-style-type: decimal;
+    list-style-position: inside;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    display: flex;
+    justify-content: space-between;
+    background-color: #1f1f1f;
+    padding: 15px;
+    border-radius: 5px;
+    gap: 15px;
+}
+
+.artist {
+    color: #b3b3b3;
+}
+
+.song {
+    color: white;
+}
+
+.library .name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+}
+
+.library .logo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    filter: invert(1);
+
+}
+
+
+
+
+.language-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    border: 1px solid #727272;
+    border-radius: 20px;
+
+    background: transparent;
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+
+    fill: currentColor;
+
+    filter: invert(1);
+}
+
+
+.leftbottom {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.leftbottom .info {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+}
+
+.leftbottom .info .infl {
+    margin: 7px;
+}
+
+.leftbottom .info .infl a {
+    text-decoration: none;
+    color: #b3b3b3;
+}
+
+.leftbottom .cooki {
+    margin: 7px;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.leftbottom .cooki a {
+    color: white;
+    text-decoration: none;
+}
+
+.leftbottom .cooki a:hover {
+    text-decoration: underline;
+}
+
+.leftbottom .btn {
+    margin: 7px;
+}
+
+
+.playlist {
+    padding: 0 40px;
+    overflow: hidden;
+}
+
+.playlist .sp {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.sp a {
+    text-decoration: none;
+    color: white;
+}
+
+.sp a:hover {
+    text-decoration: underline;
+}
+
+.cards {
+    margin: 0 -52px;
+    padding: 0 40px;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.cards::-webkit-scrollbar {
+    display: none;
+}
+
+.song-card {
+    width: 160px;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+
+    flex-shrink: 0;
+}
+
+.song-card:hover {
+    background-color: #282828;
+}
+
+
+.image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.play-btn {
+    position: absolute;
+
+    right: 10px;
+    bottom: 10px;
+
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: #00ff59;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition: 0.3s;
+}
+
+.song-card:hover .play-btn {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.play-icon {
+    width: 27px;
+    height: 27px;
+
+    fill: black;
+}
+
+.song-card h3 {
+    color: white;
+
+    margin-top: 12px;
+
+    font-size: 16px;
+}
+
+.song-card p {
+    color: #b3b3b3;
+
+    font-size: 14px;
+
+    margin-top: 5px;
+}
+
+
+.cards-wrapper {
+    position: relative;
+}
+
+
+
+
+.scroll-left,
+.scroll-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+
+    display: none;
+
+
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 28px;
+    line-height: 1;
+    padding-bottom: 4px;
+}
+
+.scroll-left {
+    left: 10px;
+
+    opacity: 0;
+
+    transform:
+        translateY(-50%) translateX(-20px);
+}
+
+.scroll-right {
+    right: 10px;
+
+    opacity: 0;
+
+    transform:
+        translateY(-50%) translateX(20px);
+}
+
+.cards-wrapper:hover .scroll-left {
+    opacity: 1;
+
+    transform:
+        translateY(-50%) translateX(0);
+}
+
+.cards-wrapper:hover .scroll-right {
+    opacity: 1;
+
+    transform:
+        translateY(-50%) translateX(0);
+}
+
+.show {
+    display: flex;
+}
+
+
+
+
+.playbar {
+    width: calc(100%);
+    background-color: white;
+    border-radius: 0px 0px 7px 7px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.playbar .playbtn {
+    position: absolute;
+    left: 434px;
+    display: flex;
+    gap: 15px;
+}
+
+.pbimg {
+    cursor: pointer;
+    width: 30px;
+    background: transparent;
+    border: none;
+}
+
+.closeimg {
+    cursor: pointer;
+    width: 30px;
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 15px;
+
+}
+
+.imgp {
+    width: 35px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.seekbar {
+    width: calc(100%);
+    height: 3px;
+    background-color: #ff0000;
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.seekbar .circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid #ff0000;
+    position: absolute;
+    left: 0%;
+    transition: left 0.3s;
+}
+
+.player {
+    position: absolute;
+
+    bottom: -50px;
+    left: 0;
+
+    width: calc(100%);
+
+    opacity: 0;
+
+    transition: opacity .2s ease, bottom .2s ease;
+}
+
+.player.show {
+    opacity: 1;
+    bottom: 0;
+}
+
+.time {
+    color: black;
+    position: absolute;
+    left: 15px;
+    font-size: 25px;
+}
+
+
+.playlist-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.playlist-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: #121212;
+    padding: 25px;
+    border-radius: 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content input {
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #1f1f1f;
+    color: white;
+}
+
+#createPlaylistBtn {
+    padding: 12px;
+    border-radius: 25px;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+}
