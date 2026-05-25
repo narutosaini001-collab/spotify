@@ -1,8 +1,54 @@
 
 let selectedPlaylist = "";
-let currfolder;
-let playlists = [];
 let songs = [];
+
+let defaultPlaylists = [
+    {
+        name: "Desi",
+
+        image:
+            "svgs/skele.jpg",
+
+        songs: [
+            {
+                name: "Asla",
+                url: "songs/Desi/Asla.mp3",
+                artist: "RUDRA"
+            },
+            {
+                name: "Bairi",
+                url: "songs/Desi/Bairi.mp3",
+                artist: "RUDRA"
+            },
+            {
+                name: "Falani",
+                url: "songs/Desi/Falani.mp3",
+                artist: "RUDRA"
+            },
+            {
+                name: "Financer",
+                url: "songs/Desi/Financer.mp3",
+                artist: "RUDRA"
+            },
+            {
+                name: "GAADI150",
+                url: "songs/Desi/GAADI150.mp3",
+                artist: "RUDRA"
+            },
+            {
+                name: "Hopeless",
+                url: "songs/Desi/Hopeless.mp3",
+                artist: "RUDRA"
+            }
+        ]
+    }
+];
+
+let userPlaylists =
+    JSON.parse(localStorage.getItem("playlists")) || [];
+
+let playlists =
+    [...defaultPlaylists, ...userPlaylists];
 
 
 const cards = document.querySelector(".cards");
@@ -45,36 +91,6 @@ leftBtn.addEventListener("click", () => {
 let currentIndex = 0;
 let currentSong = new Audio();
 
-
-async function getSongs(folder) {
-    currfolder = folder;
-    let a = await fetch(`http://10.191.54.203:3002/spotify/songs/${folder}/`);
-    let response = await a.text();
-
-    let div = document.createElement("div")
-    div.innerHTML = response;
-
-    let as = div.getElementsByTagName("a");
-    let songs = [];
-
-    for (let i = 0; i < as.length; i++) {
-        const element = as[i]; if (element.href.endsWith(".mp3")) {
-            let song = element.href.replace("%5Cspotify%5Csongs%5C", "songs/");
-            let songName = decodeURIComponent(song);
-            songName = songName.split(/[/\\]/).pop();
-            songName = songName.replace(".mp3", "");
-            songs.push({
-                name: songName,
-                url: song,
-                artist: "RUDRA"
-            });
-        }
-    }
-    return songs
-}
-
-
-
 function playMusic(index) {
     currentIndex = index;
     currentSong.src = songs[index].url;
@@ -105,9 +121,7 @@ function attachPlaylistListeners() {
                 let folder = card.querySelector("h3").innerText;
                 selectedPlaylist = folder;
                 let currentPlaylist = playlists.find(p => p.name === folder);
-                if (currentPlaylist.songs.length === 0) {
-                    currentPlaylist.songs = await getSongs(folder);
-                }
+
                 songs = currentPlaylist.songs;
 
                 let songul = document.querySelector(".library ul");
@@ -138,28 +152,6 @@ function attachPlaylistListeners() {
 
 
 async function getfolder() {
-    let f = await fetch("http://10.191.54.203:3002/spotify/songs/")
-    let result = await f.text();
-
-
-    let pl = document.createElement("div")
-    pl.innerHTML = result;
-
-    let fs = pl.getElementsByTagName("a");
-
-    for (let i = 0; i < fs.length; i++) {
-        const elem = fs[i]; if (!elem.text.startsWith("..")) {
-            let playlist = elem.text.replace("/", "");
-            playlists.push({
-                name: playlist,
-                image:
-                    "https://i.scdn.co/image/ab67616d00001e026b328f3c847bee898e384488",
-                songs: []
-            });
-        }
-    }
-
-
     let plist = document.querySelector(".cards")
     for (const playlist of playlists) {
         plist.innerHTML = plist.innerHTML + `<div class="song-card">
@@ -286,6 +278,10 @@ async function getfolder() {
                     </div>
                 </li>`;
         }
+        localStorage.setItem(
+            "playlists",
+            JSON.stringify(userPlaylists)
+        );
         attachSongListeners()
     });
 
@@ -305,7 +301,7 @@ document.getElementById("createPlaylistBtn")
         let artist = document.getElementById("playlistArtist").value;
         let imageInput = document.getElementById("playlistImage");
         let image = imageInput.files[0];
-        let imageURL = image ? URL.createObjectURL(image) : "https://i.scdn.co/image/ab67616d00001e026b328f3c847bee898e384488";
+        let imageURL = image ? URL.createObjectURL(image) : "svgs/skele.jpg";
 
         let playlist = {
             name: name,
@@ -314,6 +310,13 @@ document.getElementById("createPlaylistBtn")
             songs: []
         };
         playlists.push(playlist);
+
+        userPlaylists.push(playlist);
+
+        localStorage.setItem(
+            "playlists",
+            JSON.stringify(userPlaylists)
+        );
 
         let plist = document.querySelector(".cards");
         plist.innerHTML += `
