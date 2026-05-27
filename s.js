@@ -1,4 +1,8 @@
 
+let mobileAccountBtn = document.querySelector(".mobile-account-btn");
+let mobileAccountMenu = document.querySelector(".mobile-account-menu");
+
+
 let selectedPlaylist = "";
 let songs = [];
 
@@ -50,11 +54,28 @@ let userPlaylists =
 let playlists =
     [...defaultPlaylists, ...userPlaylists];
 
+let contextMenu = document.querySelector(".context-menu");
+let deletePlaylistOption = document.querySelector(".delete-playlist-option");
+let removeSongOption = document.querySelector(".remove-song-option");
+let selectedPlaylistIndex = null;
+let selectedSongIndex = null;
+
 
 const cards = document.querySelector(".cards");
 const leftBtn = document.querySelector(".scroll-left");
 const rightBtn = document.querySelector(".scroll-right");
 
+let overlay = document.querySelector(".overlay");
+let hamburger = document.querySelector(".hamburger");
+let leftSidebar = document.querySelector(".left");
+hamburger.addEventListener("click", () => {
+    leftSidebar.classList.toggle("show");
+    overlay.classList.toggle("show");
+});
+overlay.addEventListener("click", () => {
+    leftSidebar.classList.remove("show");
+    overlay.classList.remove("show");
+});
 
 function updateButtons() {
     const hasScroll =
@@ -100,15 +121,28 @@ function playMusic(index) {
 
 
 function attachSongListeners() {
-    let allSongs = document.querySelectorAll(".library .logo button");
+    let allSongs = document.querySelectorAll(".library ul li")
     let player = document.querySelector(".player");
 
-    allSongs.forEach((e, index) => {
-        e.addEventListener("click", () => {
+    allSongs.forEach((li, index) => {
+        let button = li.querySelector(".logo button");
+        button.addEventListener("click", () => {
             playMusic(index);
             player.classList.add("show");
             let play = document.querySelector("#play img");
             play.src = "svgs/pause.svg";
+
+        });
+
+        li.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            selectedSongIndex = index;
+            selectedPlaylistIndex = null;
+            contextMenu.style.display = "flex";
+            contextMenu.style.left = event.clientX + "px";
+            contextMenu.style.top = event.clientY + "px";
+            deletePlaylistOption.style.display = "none";
+            removeSongOption.style.display = "block";
         });
     });
 }
@@ -145,14 +179,32 @@ function attachPlaylistListeners() {
                 </li>`;
                 }
                 attachSongListeners();
+
+                if (window.innerWidth <= 900) {
+                    leftSidebar.classList.add("show");
+                    overlay.classList.add("show");
+                }
             };
+            card.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                selectedPlaylistIndex =
+                    [...document.querySelectorAll(".song-card")]
+                        .indexOf(card);
+                selectedSongIndex = null;
+                contextMenu.style.display = "flex";
+                contextMenu.style.left = event.clientX + "px";
+                contextMenu.style.top = event.clientY + "px";
+                deletePlaylistOption.style.display = "block";
+                removeSongOption.style.display = "none";
+            });
         });
 }
 
 
-
 async function getfolder() {
-    let plist = document.querySelector(".cards")
+    let plist = document.querySelector(".cards");
+    plist.innerHTML = "";
+
     for (const playlist of playlists) {
         plist.innerHTML = plist.innerHTML + `<div class="song-card">
                         <div class="image-container">
@@ -221,7 +273,7 @@ async function getfolder() {
     currentSong.addEventListener("timeupdate", () => {
         let percent = currentSong.currentTime / currentSong.duration * 100;
         circle.style.left = percent + "%";
-        document.querySelector(".time").innerText = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`;
+        document.querySelector(".time").innerText = `${formatTime(currentSong.currentTime)}/${formatTime(currentSong.duration)}`;
     });
 
     let seek = document.querySelector(".seekbar");
@@ -294,10 +346,17 @@ let openBtn = document.querySelector(".playlist-add-btn");
 openBtn.addEventListener("click", () => {
     modal.classList.add("show");
 });
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.classList.remove("show");
+    }
+});
 
 document.getElementById("createPlaylistBtn")
     .addEventListener("click", () => {
         let name = document.getElementById("playlistName").value;
+        if (!name.trim()) {alert("Enter playlist name");return;};
+
         let artist = document.getElementById("playlistArtist").value;
         let imageInput = document.getElementById("playlistImage");
         let image = imageInput.files[0];
@@ -309,6 +368,7 @@ document.getElementById("createPlaylistBtn")
             image: imageURL,
             songs: []
         };
+
         playlists.push(playlist);
 
         userPlaylists.push(playlist);
@@ -339,4 +399,89 @@ document.getElementById("createPlaylistBtn")
     });
 
 
+let searchBtn = document.querySelector(".mobile-search-btn");
+let searchOverlay = document.querySelector(".search-overlay");
+let closeSearch = document.querySelector(".close-search");
 
+searchBtn.addEventListener("click", () => {
+    searchOverlay.classList.add("show");
+});
+
+closeSearch.addEventListener("click", () => {
+    searchOverlay.classList.remove("show");
+});
+
+
+document.addEventListener("click", () => {
+    contextMenu.style.display = "none";
+});
+
+deletePlaylistOption.addEventListener("click", () => {
+    if (
+        selectedPlaylistIndex < defaultPlaylists.length
+    ) {
+        alert("Default playlist can't be deleted");
+        return;
+    }
+    playlists.splice(selectedPlaylistIndex, 1);
+    userPlaylists.splice(
+        selectedPlaylistIndex -
+        defaultPlaylists.length,
+        1
+    );
+    localStorage.setItem(
+        "playlists",
+        JSON.stringify(userPlaylists)
+    );
+    getfolder();
+    contextMenu.style.display = "none";
+});
+
+removeSongOption.addEventListener("click", () => {
+    if (selectedSongIndex === null) return;
+    let currentPlaylist =
+        playlists.find(
+            p => p.name === selectedPlaylist
+        );
+    currentPlaylist.songs.splice(
+        selectedSongIndex,
+        1
+    );
+    let songul = document.querySelector(".library ul");
+    songul.innerHTML = "";
+    for (const song of currentPlaylist.songs) {
+        songul.innerHTML += `
+        <li>
+            <div class="name">
+                <div class="song">
+                    ${song.name}
+                </div>
+                <div class="artist">
+                    ${song.artist}
+                </div>
+            </div>
+            <div class="logo">
+                <button>
+                    <img src="svgs/music.svg">
+                </button>
+            </div>
+        </li>`;
+    }
+    songs = currentPlaylist.songs;
+    attachSongListeners();
+    contextMenu.style.display = "none";
+});
+
+
+mobileAccountBtn.addEventListener("click", () => {
+    mobileAccountMenu.classList.toggle("show");
+});
+document.addEventListener("click", (e) => {
+    if (
+        !mobileAccountMenu.contains(e.target)
+        &&
+        !mobileAccountBtn.contains(e.target)
+    ) {
+        mobileAccountMenu.classList.remove("show");
+    }
+});

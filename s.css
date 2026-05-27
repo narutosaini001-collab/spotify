@@ -1,3 +1,8 @@
+html,
+body {
+    height: 100%;
+}
+
 * {
     margin: 0%;
     padding: 0%;
@@ -19,6 +24,8 @@ button:active {
 body {
     background-color: black;
     color: white;
+    height: 100vh;
+    overflow: hidden;
 }
 
 
@@ -131,6 +138,7 @@ body {
 .container {
     gap: 10px;
     margin: 10px;
+    height: calc(100vh - 85px);
 }
 
 .left {
@@ -139,6 +147,8 @@ body {
     border-radius: 7px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
 }
 
@@ -221,16 +231,19 @@ body {
     filter: invert(76%) sepia(0%) saturate(0%) brightness(90%) contrast(87%);
 }
 
+.library {
+    flex: 1;
+    overflow: hidden;
+}
 
 .library ul {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: 305px;
     overflow-y: auto;
-
     width: 100%;
     padding: 0 15px;
+    height: 100%;
 }
 
 .library ul::-webkit-scrollbar {
@@ -258,6 +271,13 @@ body {
     padding: 15px;
     border-radius: 5px;
     gap: 15px;
+
+    align-items: center;
+}
+
+.library .name {
+    flex: 1;
+    min-width: 0;
 }
 
 .artist {
@@ -416,11 +436,12 @@ body {
     position: relative;
 }
 
-.song-card h3{
+.song-card h3 {
     display: flex;
     justify-content: center;
 }
-.song-card p{
+
+.song-card p {
     display: flex;
     justify-content: center;
 }
@@ -575,7 +596,8 @@ body {
 
 .playbar .playbtn {
     position: absolute;
-    left: 434px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     gap: 15px;
 }
@@ -657,12 +679,13 @@ body {
 .playlist-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
+
 .playlist-modal.show {
     display: flex;
 }
@@ -692,4 +715,30 @@ body {
     background: white;
     cursor: pointer;
     font-weight: bold;
+}
+
+.context-menu {
+    position: fixed;
+    background: #282828;
+    border-radius: 8px;
+    padding: 6px;
+    display: none;
+    flex-direction: column;
+    z-index: 5000;
+    min-width: 180px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.context-menu button {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 12px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.context-menu button:hover {
+    background: #3a3a3a;
 }

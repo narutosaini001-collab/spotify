@@ -7,14 +7,21 @@
     <title>spotify</title>
     <link rel="stylesheet" href="s.css">
     <link rel="stylesheet" href="utility.css">
+    <link rel="stylesheet" href="mobile.css">
 </head>
 
 <body>
     <div class="nav flex align-center justify-center justify-between">
         <div class="leftnav flex align-center">
+            <button class="hamburger">
+                ☰
+            </button>
             <div class="logo"><img src="svgs/logo.svg" alt="spotify"></div>
             <button class="home flex justify-center align-center">
                 <img src="svgs/home.svg" alt="Home">
+            </button>
+            <button class="mobile-search-btn">
+                <img src="svgs/search.svg" alt="">
             </button>
             <div class="searchbar">
                 <input type="text" placeholder="What do you want to play?">
@@ -24,6 +31,9 @@
         <div class="rightnav flex align-center">
             <div class="singup">singup</div>
             <div class="login">login</div>
+            <button class="mobile-account-btn">
+                <img src="svgs/acc.svg" alt="">
+            </button>
         </div>
     </div>
     <div class="container flex">
@@ -68,7 +78,7 @@
         <div class="right border">
             <div class="playlist">
                 <div class="sp flex align-center g25">
-                    <h2><a href="#">Spotify Playlists</a></h2>
+                    <h2><a href="#">Playlists</a></h2>
                     <button class="playlist-add-btn">
                         <img src="svgs/plus.svg">
                     </button>
@@ -125,6 +135,35 @@
                 Create
             </button>
         </div>
+    </div>
+
+    <div class="mobile-account-menu">
+        <div class="mobile-signup">
+            signup
+        </div>
+        <div class="mobile-login">
+            login
+        </div>
+    </div>
+
+    <div class="search-overlay">
+        <div class="search-box">
+            <input type="text" placeholder="What do you want to play?">
+            <button class="close-search">
+                ✕
+            </button>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="context-menu">
+        <button class="delete-playlist-option">
+            Delete Playlist
+        </button>
+        <button class="remove-song-option">
+            Remove Song
+        </button>
     </div>
 
     <script src="s.js"></script>
